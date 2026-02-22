@@ -24,140 +24,139 @@ Insert into emp values(12,'vaibhav','CS',60000,'2026-04-12');
 /*5.Write a SQL query to insert a record for emp_id 13, emp_name 'Rahul', department 'IT', salary 35000, and join_date '2023-06-25'.*/
 insert into emp values(13,'Rahul','IT',35000,'2023-06-25');
 
-/*6.Write a SQL query to display all records from the Employee table.*/
+/*6.Write a SQL query to display  all records from the Employee table.*/
 Select * from emp;
 
 
-/*7.Write a SQL query to display only emp_name and salary of all employees.*/
-select 
+/*7.Write a SQL queries to display only emp_name and salary of all employees.*/
 
 
 /*8.Write a SQL query to display employees working in the 'IT' department.*/
 
 
 
-9.Write a SQL query to display employees whose salary is greater than 30000.
+/*9.Write a SQL query to display employees whose salary is greater than 30000.*/
 
 
-10.Write a SQL query to display employees who joined after '2022-01-01'.
+/*10.Write a SQL query to display employees who joined after '2022-01-01'.*/
 
-11.Write a SQL query to display distinct department names from the Employee table.
+/*11.Write a SQL query to display distinct department names from the Employee table.*/
 
 
-12.Write a SQL query to display employees whose salary is between 25000 and 40000.
+/*12.Write a SQL query to display employees whose salary is between 25000 and 40000.*/
 
 
-13.Write a SQL query to display employees whose salary is not equal to 35000.
+/*13.Write a SQL query to display employees whose salary is not equal to 35000.*/
 
 
-14.Write a SQL query to display employees who work in 'HR' or 'IT' department.
+/*14.Write a SQL query to display employees who work in 'HR' or 'IT' department.*/
 
 
-15.Write a SQL query to display employees whose name starts with letter 'P'.
+/*15.Write a SQL query to display employees whose name starts with letter 'P'.*/
 
 
-16.Write a SQL query to display employees whose salary is greater than or equal to 30000 and department is 'IT'.
+/*16.Write a SQL query to display employees whose salary is greater than or equal to 30000 and department is 'IT'.*/
 
 
-17.Write a SQL query to display employees whose salary is less than 30000 or department is 'Finance'.
+/*17.Write a SQL query to display employees whose salary is less than 30000 or department is 'Finance'.*/
 
 
-18.Write a SQL query to display employees whose name contains the letter 'a'.
+/*18.Write a SQL query to display employees whose name contains the letter 'a'.*/
 
 
-19.Write a SQL query to increase salary of all employees in the 'IT' department by 2000.
+/*19.Write a SQL query to increase salary of all employees in the 'IT' department by 2000.*/
 
 
-20.Write a SQL query to update department of employee with emp_id 3 to 'HR'.
+/*20.Write a SQL query to update department of employee with emp_id 3 to 'HR'.*/
 
 
-21.Write a SQL query to update salary of employee named 'Amit' to 30000.
+21.Write a SQL query to update salary of employee named 'Amit' to 30000.*/
 
 
-22.Write a SQL query to change join_date of employee with emp_id 5 to '2024-01-01'.
+22.Write a SQL query to change join_date of employee with emp_id 5 to '2024-01-01'.*/
 
 
-23.Write a SQL query to increase salary by 10% for employees in 'HR' department.
+23.Write a SQL query to increase salary by 10% for employees in 'HR' department.*/
 
 
-24.Write a SQL query to delete employee whose emp_id is 2.
+24.Write a SQL query to delete employee whose emp_id is 2.*/
 
 
-25.Write a SQL query to delete employees from 'Marketing' department.
+25.Write a SQL query to delete employees from 'Marketing' department.*/
 
 
-26.Write a SQL query to delete employees whose salary is less than 25000.
+26.Write a SQL query to delete employees whose salary is less than 25000.*/
 
 
-27.Write a SQL query to find the total salary of all employees.
+27.Write a SQL query to find the total salary of all employees.*/
 
 
-28.Write a SQL query to find the average salary of employees in 'IT' department.
+28.Write a SQL query to find the average salary of employees in 'IT' department.*/
 
 
-29.Write a SQL query to find the maximum and minimum salary from the Employee table.
+29.Write a SQL query to find the maximum and minimum salary from the Employee table.*/
 
 
-30.Write a SQL query to display all employees ordered by salary in descending order.
+30.Write a SQL query to display all employees ordered by salary in descending order.*/
 
-31.Write a SQL query to display employees whose salary is greater than or equal to 30000 and less than or equal to 50000, ordered by salary ascending.
+31.Write a SQL query to display employees whose salary is greater than or equal to 30000 and less than or equal to 50000, ordered by salary ascending.*/
 
 
-32.Write a SQL query to display employees whose department is not 'HR' and salary is greater than 25000.
+32.Write a SQL query to display employees whose department is not 'HR' and salary is greater than 25000.*/
 
 
-33.Write a SQL query to display employees whose name does not start with 'A' and salary is greater than 30000.
+33.Write a SQL query to display employees whose name does not start with 'A' and salary is greater than 30000.*/
 
 
-34.Write a SQL query to display employees who joined between '2021-01-01' and '2023-12-31', ordered by join_date descending.
+34.Write a SQL query to display employees who joined between '2021-01-01' and '2023-12-31', ordered by join_date descending.*/
 
 
-35.Write a SQL query to display employees whose salary is divisible by 5000.
+35.Write a SQL query to display employees whose salary is divisible by 5000.*/
 
 
-36.Write a SQL query to increase salary by 15% for employees who joined before '2022-01-01'.
+36.Write a SQL query to increase salary by 15% for employees who joined before '2022-01-01'.*/
 
 
-37.Write a SQL query to decrease salary by 5% for employees whose department is 'Finance'.
+37.Write a SQL query to decrease salary by 5% for employees whose department is 'Finance'.*/
 
 
-38.Write a SQL query to update the department to 'Senior IT' for employees whose salary is greater than or equal to 45000.
+38.Write a SQL query to update the department to 'Senior IT' for employees whose salary is greater than or equal to 45000.*/
 
 
-39.Write a SQL query to update salary to 30000 for employees whose salary is less than 25000.
+39.Write a SQL query to update salary to 30000 for employees whose salary is less than 25000.*/
 
 
-40.Write a SQL query to delete employees who joined before '2021-01-01'.
+40.Write a SQL query to delete employees who joined before '2021-01-01'.*/
 
 
-41.Write a SQL query to delete employees whose department is not 'IT' and salary is less than 28000.
+41.Write a SQL query to delete employees whose department is not 'IT' and salary is less than 28000.*/
 
 
-42.Write a SQL query to display the total salary department-wise using GROUP BY.
+42.Write a SQL query to display the total salary department-wise using GROUP BY.*/
 
 
-43.Write a SQL query to display the average salary department-wise and order the result by average salary descending.
+43.Write a SQL query to display the average salary department-wise and order the result by average salary descending.*/
 
 
-44.Write a SQL query to display the count of employees in each department.
+44.Write a SQL query to display the count of employees in each department.*/
 
 
-45.Write a SQL query to display departments having more than 2 employees using GROUP BY and HAVING.
+45.Write a SQL query to display departments having more than 2 employees using GROUP BY and HAVING.*/
 
 
-46.Write a SQL query to display the maximum salary department-wise.
+46.Write a SQL query to display the maximum salary department-wise.*/
 
 
-47.Write a SQL query to display departments where the minimum salary is greater than 30000.
+47.Write a SQL query to display departments where the minimum salary is greater than 30000.*/
 
 
-48.Write a SQL query to display employees whose name contains exactly 4 characters.
+48.Write a SQL query to display employees whose name contains exactly 4 characters.*/
 
 
-49.Write a SQL query to display employees whose name ends with a vowel.
+49.Write a SQL query to display employees whose name ends with a vowel.*/
 
 
-50.Write a SQL query to display employees ordered first by department ascending and then by salary descending.
+50.Write a SQL query to display employees ordered first by department ascending and then by salary descending.*/
 
 
 
