@@ -94,7 +94,7 @@ select * from student where email like '%gmail.com';
 select * from subject where subject_name like '%math%';
 
 /*12.️Questions having marks between 5 and 10*/
-select * from subject where total_marks between 5 and 10;
+select * from question where marks between 5 and 10;
 
 /*13.️Results where marks_obtained >= 40*/
 select * from result where marks_obtained >=40;
@@ -215,38 +215,213 @@ FROM SubjectQuestion
 GROUP BY subject_id
 HAVING cnt > 5;
 
-/*45. Total marks obtained per exam
-46. Exams where total marks > 200
-47. Count pass and fail
+/*45. Total marks obtained per exam*/
+select exam_id,sum(marks_obtained) as total_marks from result group by exam_id;
 
-48.Student Name, Subject Name, Exam Date, Marks
-49.Students Who Scored More Than 70
-50. Count of Exams Given by Each Student
+/*46. Exams where total marks > 200*/
+select exam_id,sum(marks_obtained) as total_marks from result group by exam_id having sum(marks_obtained)>200;
 
-51.Average Marks Per Subject
-5️2. Subjects With More Than 3 Students Appeared
-53. Student Exam Details Between Two Dates
-54. Total Marks Obtained Per Student
-55. Hard Questions Per Subject
-57. Students Who Failed
-58. Exam Duration With Subject
-59. Students From New York Appeared in Exams
-60. Count Questions Per Subject
-61.Students Appeared in More Than 2 Exams
-62. Average Marks Greater Than 60
-63. Easy Questions With Subject
-64. Students and Total Exams Per Subject
-65. Highest Marks Per Exam
-66 Lowest Marks Per Subject
-67 Students Appeared in Subjects Containing 'Math'
-68.Count Students By Gender In Exams
-69. Students Who Appeared in 2025 Exams
-70. Total Marks Per Subject
-71. Students Who Passed More Than 1 Exam
-72. Students Ordered By Total Marks Desc
-73.Subjects With Exam Duration > 90
-74. Students From Chicago Who Passed
-75 Total Questions By Difficult
-76 Students With Marks Between 50 and 80
-78.Full Report (Student + Subject + Questions Count + Marks)
-*/
+/*47. Count pass and fail*/
+select result_status,count(*) from result group by result_status;
+
+/*48.Student Name, Subject Name, Exam Date, Marks*/
+select s.student_name, sub.subject_name, e.exam_date, r.marks_obtained from Student s join Result r on s.student_id = r.student_id
+join ExamSchedule e on r.exam_id = e.exam_id join subject sub on e.subject_id = sub.subject_id;
+
+/*49.Students Who Scored More Than 70*/
+select s.student_name, r.marks_obtained from Student s join Result r on s.student_id = r.student_id
+where r.marks_obtained > 70;
+
+/*50. Count of Exams Given by Each Student*/
+select student_id, COUNT(exam_id) from Result group by student_id;
+
+
+
+use onlineexamdb;
+
+-- 51. average marks per subject
+select sub.subject_name, avg(r.marks_obtained) as avg_marks
+from result r
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+group by sub.subject_name;
+
+-- 52. subjects with more than 3 students appeared
+select sub.subject_name, count(distinct r.student_id) as total_students
+from result r
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+group by sub.subject_name
+having count(distinct r.student_id) > 3;
+
+-- 53. student exam details between two dates
+select s.student_name, sub.subject_name, e.exam_date, r.marks_obtained
+from student s
+join result r on s.student_id = r.student_id
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+where e.exam_date between '2025-01-01' and '2025-12-31';
+
+-- 54. total marks obtained per student
+select s.student_name, sum(r.marks_obtained) as total_marks
+from student s
+join result r on s.student_id = r.student_id
+group by s.student_name;
+
+-- 55. hard questions per subject
+select sub.subject_name, count(q.question_id) as total_hard_questions
+from subject sub
+join subjectquestion sq on sub.subject_id = sq.subject_id
+join question q on sq.question_id = q.question_id
+where q.difficulty_level = 'hard'
+group by sub.subject_name;
+
+-- 56. total students appeared per exam
+select exam_id, count(student_id) as total_students
+from result
+group by exam_id;
+
+-- 57. students who failed
+select distinct s.student_name
+from student s
+join result r on s.student_id = r.student_id
+where r.result_status = 'fail';
+
+-- 58. exam duration with subject
+select sub.subject_name, e.exam_date, e.duration_minutes
+from examschedule e
+join subject sub on e.subject_id = sub.subject_id;
+
+-- 59. students from new york appeared in exams
+select distinct s.student_name
+from student s
+join result r on s.student_id = r.student_id
+where s.city = 'new york';
+
+-- 60. count questions per subject
+select sub.subject_name, count(sq.question_id) as total_questions
+from subject sub
+join subjectquestion sq on sub.subject_id = sq.subject_id
+group by sub.subject_name;
+
+-- 61. students appeared in more than 2 exams
+select student_id, count(exam_id) as total_exams
+from result
+group by student_id
+having count(exam_id) > 2;
+
+-- 62. students with average marks greater than 60
+select student_id, avg(marks_obtained) as avg_marks
+from result
+group by student_id
+having avg(marks_obtained) > 60;
+
+-- 63. easy questions with subject
+select sub.subject_name, q.question_text
+from subject sub
+join subjectquestion sq on sub.subject_id = sq.subject_id
+join question q on sq.question_id = q.question_id
+where q.difficulty_level = 'easy';
+
+-- 64. students and total exams per subject
+select sub.subject_name, count(r.student_id) as total_attempts
+from result r
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+group by sub.subject_name;
+
+-- 65. highest marks per exam
+select exam_id, max(marks_obtained) as highest_marks
+from result
+group by exam_id;
+
+-- 66. lowest marks per subject
+select sub.subject_name, min(r.marks_obtained) as lowest_marks
+from result r
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+group by sub.subject_name;
+
+-- 67. students appeared in subjects containing 'math'
+select distinct s.student_name
+from student s
+join result r on s.student_id = r.student_id
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+where sub.subject_name like '%math%';
+
+-- 68. count students by gender in exams
+select s.gender, count(distinct r.student_id) as total_students
+from student s
+join result r on s.student_id = r.student_id
+group by s.gender;
+
+-- 69. students who appeared in 2025 exams
+select distinct s.student_name
+from student s
+join result r on s.student_id = r.student_id
+join examschedule e on r.exam_id = e.exam_id
+where year(e.exam_date) = 2025;
+
+-- 70. total marks per subject
+select sub.subject_name, sum(r.marks_obtained) as total_marks
+from result r
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+group by sub.subject_name;
+
+-- 71. students who passed more than 1 exam
+select student_id, count(*) as total_pass
+from result
+where result_status = 'pass'
+group by student_id
+having count(*) > 1;
+
+-- 72. students ordered by total marks desc
+select s.student_name, sum(r.marks_obtained) as total_marks
+from student s
+join result r on s.student_id = r.student_id
+group by s.student_name
+order by total_marks desc;
+
+-- 73. subjects with exam duration > 90
+select distinct sub.subject_name
+from examschedule e
+join subject sub on e.subject_id = sub.subject_id
+where e.duration_minutes > 90;
+
+-- 74. students from chicago who passed
+select distinct s.student_name
+from student s
+join result r on s.student_id = r.student_id
+where s.city = 'chicago'
+and r.result_status = 'pass';
+
+-- 75. total questions by difficulty
+select difficulty_level, count(*) as total_questions
+from question
+group by difficulty_level;
+
+-- 76. students with marks between 50 and 80
+select s.student_name, r.marks_obtained
+from student s
+join result r on s.student_id = r.student_id
+where r.marks_obtained between 50 and 80;
+
+-- 77. exams with average marks greater than 60
+select exam_id, avg(marks_obtained) as avg_marks
+from result
+group by exam_id
+having avg(marks_obtained) > 60;
+
+-- 78. full report
+select s.student_name,
+       sub.subject_name,
+       count(sq.question_id) as total_questions,
+       r.marks_obtained
+from student s
+join result r on s.student_id = r.student_id
+join examschedule e on r.exam_id = e.exam_id
+join subject sub on e.subject_id = sub.subject_id
+join subjectquestion sq on sub.subject_id = sq.subject_id
+group by s.student_name, sub.subject_name, r.marks_obtained;
