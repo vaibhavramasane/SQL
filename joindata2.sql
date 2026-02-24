@@ -414,7 +414,7 @@ from result
 group by exam_id
 having avg(marks_obtained) > 60;
 
--- 78. full report
+/*78. full report*/
 select s.student_name,
        sub.subject_name,
        count(sq.question_id) as total_questions,
