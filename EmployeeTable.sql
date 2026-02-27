@@ -86,49 +86,52 @@ select * from emp;
 delete from emp where empid=2;
 
 -- 25.Write a SQL query to delete employees from 'Marketing' department.*/
+delete from emp where department = 'Marketing' and empid =11;
 
 -- 26.Write a SQL query to delete employees whose salary is less than 25000.*/
-
+SET SQL_SAFE_UPDATES = 0;
+delete from emp where sal between 10000 and 25000;
 
 -- 27.Write a SQL query to find the total salary of all employees.*/
-
+select sum(sal) from emp;
 
 -- 28.Write a SQL query to find the average salary of employees in 'IT' department.*/
-
+select avg(sal) from emp where department='IT';
 
 -- 29.Write a SQL query to find the maximum and minimum salary from the Employee table.*/
-
+select max(sal),min(sal) from emp;
 
 -- 30.Write a SQL query to display all employees ordered by salary in descending order.*/
+select * from emp where sal order by sal desc;
 
-31.Write a SQL query to display employees whose salary is greater than or equal to 30000 and less than or equal to 50000, ordered by salary ascending.*/
+-- 31.Write a SQL query to display employees whose salary is greater than or equal to 30000 and less than or equal to 50000, ordered by salary ascending.*/
+select * from emp where sal between 30000 and 50000 order by sal asc;
 
+-- 32.Write a SQL query to display employees whose department is not 'HR' and salary is greater than 25000.*/
+select * from emp where department!='HR' and sal>25000;
 
-32.Write a SQL query to display employees whose department is not 'HR' and salary is greater than 25000.*/
+-- 33.Write a SQL query to display employees whose name does not start with 'A' and salary is greater than 30000.*/
+select * from emp where empname not like 'A%' and sal >30000;
 
+-- 34.Write a SQL query to display employees who joined between '2021-01-01' and '2023-12-31', ordered by join_date descending.*/
+select * from emp where join_date between '2021-01-01' and '2023-12-31' order by join_date desc;
 
-33.Write a SQL query to display employees whose name does not start with 'A' and salary is greater than 30000.*/
+-- 35.Write a SQL query to display employees whose salary is divisible by 5000.*/
+select * from emp where sal % 5000=0;
 
+-- 36.Write a SQL query to increase salary by 15% for employees who joined before '2022-01-01'.*/
+update emp set sal = sal + (sal*0.15) where join_date < '2022-01-01';
 
-34.Write a SQL query to display employees who joined between '2021-01-01' and '2023-12-31', ordered by join_date descending.*/
-
-
-35.Write a SQL query to display employees whose salary is divisible by 5000.*/
-
-
-36.Write a SQL query to increase salary by 15% for employees who joined before '2022-01-01'.*/
-
-
-37.Write a SQL query to decrease salary by 5% for employees whose department is 'Finance'.*/
-
-
-38.Write a SQL query to update the department to 'Senior IT' for employees whose salary is greater than or equal to 45000.*/
+-- 37.Write a SQL query to decrease salary by 5% for employees whose department is 'Finance'.*/
 
 
-39.Write a SQL query to update salary to 30000 for employees whose salary is less than 25000.*/
+-- 38.Write a SQL query to update the department to 'Senior IT' for employees whose salary is greater than or equal to 45000.*/
 
 
-40.Write a SQL query to delete employees who joined before '2021-01-01'.*/
+-- 39.Write a SQL query to update salary to 30000 for employees whose salary is less than 25000.*/
+
+
+-- 40.Write a SQL query to delete employees who joined before '2021-01-01'.*/
 
 
 41.Write a SQL query to delete employees whose department is not 'IT' and salary is less than 28000.*/
