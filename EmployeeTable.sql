@@ -123,46 +123,72 @@ select * from emp where sal % 5000=0;
 update emp set sal = sal + (sal*0.15) where join_date < '2022-01-01';
 
 -- 37.Write a SQL query to decrease salary by 5% for employees whose department is 'Finance'.*/
+select * from emp where department='Finance';
+SET SQL_SAFE_UPDATES = 0; -- start
+update emp set sal = sal - (sal * 0.05) where department= 'Finance';
 
+SET SQL_SAFE_UPDATES = 1; -- end
+select * from emp;
 
 -- 38.Write a SQL query to update the department to 'Senior IT' for employees whose salary is greater than or equal to 45000.*/
-
+SET SQL_SAFE_UPDATES = 0;
+update emp set department = 'Senior IT' where sal>=45000;
+select * from emp;
+SET SQL_SAFE_UPDATES = 1;
 
 -- 39.Write a SQL query to update salary to 30000 for employees whose salary is less than 25000.*/
-
+SET SQL_SAFE_UPDATES = 0;
+update emp set sal=30000 where sal <25000;
+SET SQL_SAFE_UPDATES = 1;
 
 -- 40.Write a SQL query to delete employees who joined before '2021-01-01'.*/
+SET SQL_SAFE_UPDATES = 0;
+delete from emp where join_date<'2021-01-01';
+select * from emp;
+SET SQL_SAFE_UPDATES = 1;
 
+-- 41.Write a SQL query to delete employees whose department is not 'IT' and salary is less than 28000.*/
+SET SQL_SAFE_UPDATES = 0;
+delete from emp where department!='IT' and sal<28000;
 
-41.Write a SQL query to delete employees whose department is not 'IT' and salary is less than 28000.*/
+-- 42.Write a SQL query to display the total salary department-wise using GROUP BY.*/
+SET SQL_SAFE_UPDATES = 0;
+select department, SUM(sal) as total_salary from emp group by department;
 
+-- 43.Write a SQL query to display the average salary department-wise and order the result by average salary descending.*/
+select department,avg(sal) from emp group by department order by avg(sal) desc;
 
-42.Write a SQL query to display the total salary department-wise using GROUP BY.*/
+-- 44.Write a SQL query to display the count of employees in each department.*/
+select department,count(*)from emp group by department; 
 
+-- 45.Write a SQL query to display departments having more than 2 employees using GROUP BY and HAVING.*/
+select department
 
-43.Write a SQL query to display the average salary department-wise and order the result by average salary descending.*/
+-- 46.Write a SQL query to display the maximum salary department-wise.*/4
+SET SQL_SAFE_UPDATES = 0;
+select department,max(sal) from emp group by department;
+SET SQL_SAFE_UPDATES = 1;
+-- 47.Write a SQL query to display departments where the minimum salary is greater than 30000.*/
+SET SQL_SAFE_UPDATES = 0;
+select department,min(sal) from emp group by department having min(sal)>30000;
 
+-- 48.Write a SQL query to display employees whose name contains exactly 4 characters.*/
 
-44.Write a SQL query to display the count of employees in each department.*/
+select * from emp where length(ename) = 4;
+-- 49.Write a SQL query to display employees whose name ends with a vowel.*/
+SET SQL_SAFE_UPDATES = 0;
+select *
+from emp
+where ename like '%a'
+   or ename like '%e'
+   or ename like '%i'
+   or ename like '%o'
+   or ename like '%u';
 
-
-45.Write a SQL query to display departments having more than 2 employees using GROUP BY and HAVING.*/
-
-
-46.Write a SQL query to display the maximum salary department-wise.*/
-
-
-47.Write a SQL query to display departments where the minimum salary is greater than 30000.*/
-
-
-48.Write a SQL query to display employees whose name contains exactly 4 characters.*/
-
-
-49.Write a SQL query to display employees whose name ends with a vowel.*/
-
-
-50.Write a SQL query to display employees ordered first by department ascending and then by salary descending.*/
-
+-- 50.Write a SQL query to display employees ordered first by department ascending and then by salary descending.*/
+select *
+from emp
+order by department asc, sal desc;
 
 
 
