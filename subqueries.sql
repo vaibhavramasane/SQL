@@ -99,22 +99,22 @@ SELECT empname, salary FROM employee WHERE salary > ( SELECT AVG(salary) FROM em
 -- 14.Find employees who are working on the project with the highest budget.
 SELECT empname FROM Employee WHERE empid IN (SELECT empid FROM Project WHERE budget = (SELECT MAX(budget) FROM Project));
 
--- 15Display employees whose salary is higher than at least one employee in department 2.
-
+-- 15.Display employees whose salary is higher than at least one employee in department 2.
+SELECT empname from employee where salary > Any( select salary from employee where deptid =2);
 
 -- 16.Find employees whose salary is less than the maximum salary in their department.
-
+select empname from employee e where salary < (select max(salary) from employee where deptid = e.deptid);
 
 -- 17.Display employees who work in departments located in the same location as the 'Sales' department.
 
-
 -- 18.Find employees who are not assigned to any project.
-
+select empname from employee where empid not in(select empid from project);
 
 -- 19.Display departments where average salary of employees is greater than 60000.
-
-
+select deptname from department where deptid IN(select deptid from employee group by deptid having avg(salary)>60000);
+ 
 -- 20.Find employees whose salary is greater than all employees in department 3.
+select empname from employee where salary > (select * from employee where deptid=3);
 
 -- 21.Find employees whose salary is greater than the average salary of employees working on projects.
 
