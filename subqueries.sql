@@ -107,6 +107,7 @@ select empname from employee e where salary < (select max(salary) from employee 
 
 -- 17.Display employees who work in departments located in the same location as the 'Sales' department.
 
+
 -- 18.Find employees who are not assigned to any project.
 select empname from employee where empid not in(select empid from project);
 
