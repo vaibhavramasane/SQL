@@ -53,6 +53,7 @@ Project Budget
 Subquery :- 
 */
 use onlineexamdb;
+select * from employee
 
 -- 1.Write a query to find employees whose salary is greater than the average salary of all employees.
 select * from employee where salary > (select avg(salary) from employee);
@@ -106,8 +107,14 @@ SELECT empname from employee where salary > Any( select salary from employee whe
 select empname from employee e where salary < (select max(salary) from employee where deptid = e.deptid);
 
 -- 17.Display employees who work in departments located in the same location as the 'Sales' department.
-
-
+SELECT e.emp_name
+FROM employee e
+JOIN department d ON e.deptid = d.deptid
+WHERE d.location = (
+    SELECT location
+    FROM department
+    WHERE dept_name = 'Sales'
+);
 -- 18.Find employees who are not assigned to any project.
 select empname from employee where empid not in(select empid from project);
 
@@ -118,13 +125,31 @@ select deptname from department where deptid IN(select deptid from employee grou
 select empname from employee where salary > (select * from employee where deptid=3);
 
 -- 21.Find employees whose salary is greater than the average salary of employees working on projects.
-
+SELECT empname
+FROM employee
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employee
+    WHERE empid IN (SELECT empid FROM project)
+);
 
 -- 22.Display employees who are working on more expensive projects than the average project budget.
-
-
+SELECT e.empname
+FROM employee e
+JOIN project p ON e.empid = p.empid
+WHERE p.budget > (
+    SELECT AVG(budget) FROM project
+);
 -- 23.Find the department with the highest average salary and display employees of that department.
-
+SELECT empname
+FROM employee
+WHERE deptid = (
+    SELECT deptid
+    FROM employee
+    GROUP BY deptid
+    ORDER BY AVG(salary) DESC
+    LIMIT 1
+);
 
 -- 24.Display employees whose salary is greater than the salary of every employee in the HR department.
 
@@ -139,9 +164,32 @@ select empname from employee where salary > (select * from employee where deptid
 
 
 -- 28.Display employees working in departments where total project budget exceeds 200000.
-
+SELECT empname
+FROM employee
+WHERE empid IN (
+    SELECT empid
+    FROM project
+    GROUP BY empid
+    HAVING SUM(budget) > 200000
+);
 
 -- 29.Find employees whose salary is greater than the maximum salary of employees working in 'Pune' location departments.
+SELECT empname
+FROM employee
+WHERE salary > (
+    SELECT MAX(e.salary)
+    FROM employee e
+    JOIN department d ON e.deptid = d.deptid
+    WHERE d.location = 'Pune'
+);
 
 
 -- 30.Display employees who are working on projects handled by employees earning more than 70000.
+select distinct e.empname
+from employee e
+join project p on e.empid = p.empid
+where p.empid IN (
+    select empid
+    from  employee
+    where salary > 70000
+);
