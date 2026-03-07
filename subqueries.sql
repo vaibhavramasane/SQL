@@ -152,16 +152,47 @@ WHERE deptid = (
 );
 
 -- 24.Display employees whose salary is greater than the salary of every employee in the HR department.
+SELECT empname
+FROM employee
+WHERE salary > ALL (
+    SELECT salary
+    FROM employee
+    WHERE deptid = (
+        SELECT deptid
+        FROM department
+        WHERE deptname = 'HR'
+    )
+);
 
 
 -- 25.Find employees who work on projects where the budget is greater than the average budget of all projects.
+SELECT e.empname
+FROM employee e
+JOIN project p ON e.empid = p.empid
+WHERE p.budget > (
+    SELECT AVG(budget)
+    FROM project
+);
 
 
 -- 26.Display employees who belong to departments where more than 3 employees work.
-
+SELECT empname
+FROM employee
+WHERE deptid IN (
+    SELECT deptid
+    FROM employee
+    GROUP BY deptid
+    HAVING COUNT(*) > 3
+);
 
 -- 27.Find employees whose salary is greater than the average salary of employees who joined after 2020.
-
+SELECT empname
+FROM employee
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employee
+    WHERE joinyear > 2020
+);
 
 -- 28.Display employees working in departments where total project budget exceeds 200000.
 SELECT empname
