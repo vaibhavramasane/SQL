@@ -1,0 +1,75 @@
+Question1: create procedure to calculate addition of two variables 
+
+mysql> delimiter //
+mysql> create procedure calsum()
+    -> begin
+    -> declare first int(5);
+    -> declare sec int(5);
+    -> declare third int(5);
+    -> set first =100;
+    -> set sec = 200;
+    -> set third = first + sec;
+    -> select third;
+    -> end
+    -> //
+Query OK, 0 rows affected, 3 warnings (0.16 sec)
+
+mysql> call calsum();
+    -> //
++-------+
+| third |
++-------+
+|   300 |
++-------+
+1 row in set (0.14 sec)
+
+
+Question2 :create procedure to calculate multiplication of two variables 
+
+mysql> delimiter ##
+mysql> create procedure calmul()
+    -> begin
+    -> declare first int(5);
+    -> declare second int(5);
+    -> declare third int(5);
+    -> set first = 100;
+    -> set second = 300;
+    -> set third = first * second;
+    -> select third;
+    -> end
+    -> ##
+Query OK, 0 rows affected, 3 warnings (0.17 sec)
+
+mysql> call calmul()##
++-------+
+| third |
++-------+
+| 30000 |
++-------+
+1 row in set (0.13 sec)
+
+
+Question 3 : addition 
+
+mysql> delimiter %%
+mysql> create procedure calAdd()
+    -> begin
+    -> declare first int(5);
+    -> declare second int(5);
+    -> declare third int(5);
+    -> set first = 2000;
+    -> set second = 4;
+    -> set third =first + second + first;
+    -> select third;
+    -> end
+    -> %%
+Query OK, 0 rows affected, 3 warnings (0.15 sec)
+
+mysql> call calAdd();
+    -> %%
++-------+
+| third |
++-------+
+|  4004 |
++-------+
+1 row in set (0.00 sec)
