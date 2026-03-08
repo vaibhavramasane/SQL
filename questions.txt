@@ -169,3 +169,51 @@ mysql> call greter(100,200,300)*
 +--------------+
 1 row in set (0.00 sec)
 
+Question : WAP to create procedure display the good morning message 5 times
+mysql> create procedure displayMsg()
+    -> begin
+    -> declare i int(5);
+    -> set i=1;
+    -> test_loop : LOOP
+    ->   if i=5 then
+    ->     leave test_loop;
+    ->   else
+    ->     select "good morning";
+    ->     set i = i+1;
+    -> end if;
+    -> end LOOP;
+    -> end
+    -> //
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> call displayMsg();
+    -> //
++--------------+
+| good morning |
++--------------+
+| good morning |
++--------------+
+1 row in set (0.00 sec)
+
++--------------+
+| good morning |
++--------------+
+| good morning |
++--------------+
+1 row in set (0.00 sec)
+
++--------------+
+| good morning |
++--------------+
+| good morning |
++--------------+
+1 row in set (0.00 sec)
+
++--------------+
+| good morning |
++--------------+
+| good morning |
++--------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
