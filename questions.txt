@@ -73,3 +73,99 @@ mysql> call calAdd();
 |  4004 |
 +-------+
 1 row in set (0.00 sec)
+
+
+Question 4 : WAP to create a procedure to pass integer value and get a cube of  integer value.
+
+mysql> delimiter @@
+mysql> create procedure getCube(IN no int(5),Out res int(5))
+    -> begin
+    -> set res = no * no * no;
+    -> end
+    -> @@
+Query OK, 0 rows affected, 2 warnings (0.05 sec)
+
+mysql> call getCube(5,@cube)@@
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select @cube@@
++-------+
+| @cube |
++-------+
+|   125 |
++-------+
+1 row in set (0.00 sec)
+
+
+Question 5 : WAP to create a procedure to pass integer value and get a Square of  integer value.
+
+mysql> delimiter //
+mysql> create procedure getSquare(IN no int(5),OUT res int(5))
+    -> begin
+    -> set res = no * no;
+    -> end
+    -> //
+Query OK, 0 rows affected, 2 warnings (0.01 sec)
+
+mysql> call getSquare(10,@result)//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @result//
++---------+
+| @result |
++---------+
+|     100 |
++---------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+Question 6: Create procedure which accept two input parameters and check which is greater 
+
+mysql> delimiter //
+mysql> create procedure compval(a int(5),b int(5))
+    -> begin
+    -> IF a>b THEN
+    ->  select "A is Greater";
+    -> ELSE
+    ->  select "B is Greater";
+    -> END IF;
+    -> END
+    -> //
+Query OK, 0 rows affected, 2 warnings (0.01 sec)
+
+mysql> call compval(100,200)//
++--------------+
+| B is Greater |
++--------------+
+| B is Greater |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Question 7 : Create procedure pass three value as input parameter and check which is greater 
+
+mysql> delimiter *
+mysql> create procedure greter(a int(5),b int(5),c int(5))
+    -> begin
+    -> if a>b and a>c then
+    ->  select "A is greater";
+    -> elseif b>a and b>c then
+    ->  select "B is greater";
+    -> else
+    ->  select "C is greater";
+    -> end if;
+    -> end
+    -> *
+Query OK, 0 rows affected, 3 warnings (0.01 sec)
+
+mysql> call greter(100,200,300)*
++--------------+
+| C is greater |
++--------------+
+| C is greater |
++--------------+
+1 row in set (0.00 sec)
+
