@@ -217,3 +217,92 @@ mysql> call displayMsg();
 1 row in set (0.01 sec)
 
 Query OK, 0 rows affected (0.01 sec)
+
+Question 8 : create procedure to print table of specified number
+
+mysql> delimiter //
+mysql> create procedure displayTab(no int(5))
+    -> begin
+    -> declare i int(5);
+    -> set i=1;
+    -> test_loop : LOOP
+    -> if i=10 then
+    ->  leave test_loop;
+    -> else
+    ->  select no*i as 'Result';
+    -> set i = i+1;
+    -> end if;
+    -> end LOOP;
+    -> end
+    -> //
+Query OK, 0 rows affected, 2 warnings (0.01 sec)
+
+mysql> delimiter ;
+
+mysql> call displayTab(6);
++--------+
+| Result |
++--------+
+|      6 |
++--------+
+1 row in set (0.00 sec)
+
++--------+
+| Result |
++--------+
+|     12 |
++--------+
+1 row in set (0.00 sec)
+
++--------+
+| Result |
++--------+
+|     18 |
++--------+
+1 row in set (0.00 sec)
+
++--------+
+| Result |
++--------+
+|     24 |
++--------+
+1 row in set (0.00 sec)
+
++--------+
+| Result |
++--------+
+|     30 |
++--------+
+1 row in set (0.00 sec)
+
++--------+
+| Result |
++--------+
+|     36 |
++--------+
+1 row in set (0.00 sec)
+
++--------+
+| Result |
++--------+
+|     42 |
++--------+
+1 row in set (0.01 sec)
+
++--------+
+| Result |
++--------+
+|     48 |
++--------+
+1 row in set (0.01 sec)
+
++--------+
+| Result |
++--------+
+|     54 |
++--------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
