@@ -24,6 +24,35 @@ mysql> call calsum();
 1 row in set (0.14 sec)
 
 
+similar question : 
+
+mysql> delimiter //
+mysql> create procedure calsum1()
+    -> begin
+    -> declare first int(5);
+    -> declare second int(5);
+    -> declare third int(5);
+    -> declare fourth int(5);
+    -> set first =1;
+    -> set second =2;
+    -> set third = 3;
+    -> set fourth = first * second + third;
+    -> select fourth;
+    -> end
+    -> //
+Query OK, 0 rows affected, 4 warnings (0.09 sec)
+
+mysql> call calsum1();
+    -> //
++--------+
+| fourth |
++--------+
+|      5 |
++--------+
+1 row in set (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
 Question2 :create procedure to calculate multiplication of two variables 
 
 mysql> delimiter ##
