@@ -20,6 +20,12 @@ select min(sal) from emp;
 
 -- 7. Find Average Salary
 select avg(sal) from emp;
+
 -- 8. Find Total Salary
+select sum(sal) from emp;
+
 -- 9. Find Employees Whose Name Starts With 'A'
--- 10. Display Department Wise Salary
+select * from empname where ename like 'A%';
+
+-- 10. Display total salary 
+select sum(sal) from emp;
