@@ -16,7 +16,10 @@ select count(*)  from emp;
 select max(sal) from emp;
 
 -- 6. Find Minimum Salary
+select min(sal) from emp;
+
 -- 7. Find Average Salary
+select avg(sal) from emp;
 -- 8. Find Total Salary
 -- 9. Find Employees Whose Name Starts With 'A'
 -- 10. Display Department Wise Salary
